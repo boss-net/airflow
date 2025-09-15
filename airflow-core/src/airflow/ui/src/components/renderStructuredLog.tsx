@@ -178,11 +178,13 @@ export const renderStructuredLog = ({
     });
   }
 
-  elements.push(
-    <chakra.span className="event" key={2} whiteSpace="pre-wrap">
-      {addLinks(event)}
-    </chakra.span>,
-  );
+  if (!event.startsWith("::group::")) {
+    elements.push(
+      <chakra.span className="event" key={2} whiteSpace="pre-wrap">
+        {addLinks(event)}
+      </chakra.span>,
+    );
+  }
 
   for (const key in reStructured) {
     if (Object.hasOwn(reStructured, key)) {
